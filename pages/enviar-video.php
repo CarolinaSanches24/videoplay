@@ -27,17 +27,6 @@
     </header>
 
     <main class="container">
-        <!-- Verifica se existe uma mensagem na URL -->
-        <?php if (isset($_GET['success'])): ?>
-            <div class="mensagem">
-                <?php if ($_GET['success'] == 0): ?>
-                    <p class="mensagem mensagem--sucesso">Vídeo enviado com sucesso!</p>
-                <?php elseif ($_GET['success'] == 1): ?>
-                    <p class="mensagem mensagem--erro">Erro ao enviar o vídeo. Tente novamente.</p>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
-
         <form class="container__formulario" action="/src/novo-video.php" method="post">
             <h2 class="formulario__titulo">Envie um vídeo!</h2>
             <div class="formulario__campo">

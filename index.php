@@ -36,6 +36,18 @@ $videoList= $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         </nav>
 
     </header>
+     <!-- Verifica se existe uma mensagem na URL -->
+     <?php echo "teste". $_GET['success'];?>
+        <?php if (isset($_GET['success'])): ?>
+            
+            <div id="mensagem" class="mensagem">
+                <?php if ($_GET['success'] == 0): ?>
+                    <p class="mensagem mensagem--sucesso">Vídeo enviado com sucesso!</p>
+                <?php elseif ($_GET['success'] == 1): ?>
+                    <p class="mensagem mensagem--erro">Erro ao enviar o vídeo. Tente novamente.</p>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
 
     <ul class="videos__container" alt="videos alura">
         <?php foreach ($videoList as $video): ?>
@@ -57,6 +69,18 @@ $videoList= $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+    <script>
+    // Espera 5 segundos e depois remove a mensagem
+    setTimeout(() => {
+        const mensagem = document.getElementById('mensagem');
+        if (mensagem) {
+            mensagem.style.transition = 'opacity 0.5s ease'; // Animação de fade-out
+            mensagem.style.opacity = '0'; // Define a opacidade para 0 (invisível)
+            // Remove o elemento do DOM após a animação
+            setTimeout(() => mensagem.remove(), 400); // 500ms corresponde ao tempo da transição
+        }
+    }, 2000); // 2000ms = 2 segundos
+</script>
 </body>
 
 </html>

@@ -102,6 +102,29 @@ body {
     cursor: pointer;
 }
 
+.mensagem {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 15%;
+    height: 30%;
+    padding: 1rem;
+    
+}
+
+.mensagem--sucesso {
+    color: #155724;
+    background-color: #4c965d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease, opacity 0.5s ease; 
+}
+
+.mensagem--erro {
+    color: #721c24;
+    background-color: #7c3333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease, opacity 0.5s ease; 
+}
 
 
 @media(min-width: 834px) {
