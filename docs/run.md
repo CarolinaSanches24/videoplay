@@ -8,3 +8,6 @@ php -S localhost:8000
 ```shell
 docker exec -it <nomedocontainer> bash
 ```
+```shell
+docker-compose up -d
+```

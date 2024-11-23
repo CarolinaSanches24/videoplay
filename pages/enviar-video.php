@@ -44,6 +44,17 @@
             <input class="formulario__botao" type="submit" value="Enviar" />
         </form>
     </main>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+    const urlInput = document.getElementById('url').value;
+    const urlPattern = /^https?:\/\/.+/;
+
+    if (!urlPattern.test(urlInput)) {
+        event.preventDefault();
+        alert('Por favor, insira uma URL válida com http:// ou https://');
+    }
+});
+    </script>
 </body>
 
 </html>
