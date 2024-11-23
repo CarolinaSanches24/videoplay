@@ -28,33 +28,37 @@ body {
     background-color: white;
     position: fixed;
     top: 0;
-    height: 80px;
+    height: 90px;
     width: 100%;
     padding: 0 25px;
     z-index: 2;
 }
 
 .logo {
-    background-image: url(../img/cabecalho/Logo.png);
-    background-repeat: no-repeat;
     padding: 15px 65px;
     cursor: pointer;
+    width: 35%;
+    position: relative;
+    right:20%;
+    
 }
 
 
 .cabecalho__videos {
     background-image: url(../img/cabecalho/video_call.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 15px;
+    padding: 30px;
 }
 
 .cabecalho__sair {
-    margin: 0 20px;
-    padding: 5px 10px;
-    border-radius: 10%;
-    background-color: var(--azul-escuro);
+    background-image: url(../img/cabecalho/logout.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 15%;
+    padding: 30px;
 
 }
 

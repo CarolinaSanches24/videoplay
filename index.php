@@ -6,7 +6,8 @@ $pdo = ConnectionDB::connect($host, $db, $user, $password);
 $sql = "SELECT * FROM videos;";
 $videoList = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-function displayMessage($key) {
+function displayMessage($key)
+{
     $messages = [
         'success_add' => 'Vídeo enviado com sucesso!',
         'error_add' => 'Erro ao enviar o vídeo. Tente novamente.',
@@ -16,7 +17,7 @@ function displayMessage($key) {
         'error_invalid_title' => 'Título do video inválido!',
         'error_edit' => 'Erro ao editar video',
         'success_edit' => 'Video editado com sucesso!',
-        ];
+    ];
 
     return $messages[$key] ?? '';
 }
@@ -33,8 +34,8 @@ function displayMessage($key) {
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="./css/flexbox.css">
-    <title>VideoPlay</title>
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <title>Anime Stream</title>
+    <link rel="shortcut icon" href="./img/cabecalho/video_call.png" type="image/x-icon">
 </head>
 
 <body>
@@ -42,11 +43,13 @@ function displayMessage($key) {
     <header>
 
         <nav class="cabecalho">
-            <a class="logo" href="/"></a>
+            <a href="/">
+                <img src="/img/cabecalho/Logo.png" class="logo" alt="logo anime stream">
+            </a>
 
             <div class="cabecalho__icones">
                 <a href="./pages/enviar-video.php" class="cabecalho__videos"></a>
-                <a href="./pages/login.html" class="cabecalho__sair">Sair</a>
+                <a href="./pages/login.html" class="cabecalho__sair"></a>
             </div>
         </nav>
 
@@ -69,7 +72,7 @@ function displayMessage($key) {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                     <div class="descricao-video">
-                        <img src="./img/logo.png" alt="logo canal alura">
+                        <img src="/img/cabecalho/Logo.png" alt="logo canal alura">
                         <h3><?php echo $video['title']; ?></h3>
                         <div class="acoes-video">
                             <a href="/src/formulario.php?id=<?= $video['id']; ?>">Editar</a>
@@ -85,7 +88,7 @@ function displayMessage($key) {
             const mensagem = document.getElementById('mensagem');
             if (mensagem) {
                 mensagem.style.transition = 'opacity 0.5s ease'; // Animação de fade-out
-                mensagem.style.opacity = '0'; 
+                mensagem.style.opacity = '0';
                 // Remove o elemento do DOM após a animação
                 setTimeout(() => mensagem.remove(), 400); // 500ms corresponde ao tempo da transição
             }
