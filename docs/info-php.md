@@ -7,6 +7,11 @@
 - **$_ENV** que contém todas as variáveis de ambiente passadas para o processo do PHP;
 - **$_SERVER** que possui informações do servidor Web, como os cabeçalhos da requisição, o caminho acessado, etc. Todas as chaves desse array são criadas pelo servidor web, então elas podem variar de servidor para servidor.
 
+#### Header
+Com a função header podemos enviar qualquer tipo de cabeçalho HTTP para o cliente de nossa aplicação.
+Ao enviar um cabeçalho chamado Location para o navegador, o mesmo entende que deverá redirecionar o usuário para a URL contida no valor deste cabeçalho
+
+
 ### Criando validação de url inválida 
 
 **filter_var($url, FILTER_VALIDATE_URL)**:

@@ -1,10 +1,24 @@
 <?php
 
 require __DIR__ . '/src/infra/ConnectionDB.php';
-$pdo = ConnectionDB::connect($host,$db,$user,$password);
+$pdo = ConnectionDB::connect($host, $db, $user, $password);
 
 $sql = "SELECT * FROM videos;";
-$videoList= $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$videoList = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+// Função para exibir mensagens
+function displayMessage($key) {
+    $messages = [
+        'success_add' => 'Vídeo enviado com sucesso!',
+        'error_add' => 'Erro ao enviar o vídeo. Tente novamente.',
+        'success_delete' => 'Vídeo excluído com sucesso!',
+        'error_delete' => 'Erro ao excluir o vídeo.',
+        'invalid_url' => 'URL inválida. Certifique-se de que começa com http:// ou https://.',
+        'invalid_title' => 'Título do video inválido!',
+        ];
+
+    return $messages[$key] ?? '';
+}
 
 ?>
 <!DOCTYPE html>
@@ -36,18 +50,14 @@ $videoList= $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         </nav>
 
     </header>
-     <!-- Verifica se existe uma mensagem na URL -->
-     <?php echo "teste". $_GET['success'];?>
-        <?php if (isset($_GET['success'])): ?>
-            
-            <div id="mensagem" class="mensagem">
-                <?php if ($_GET['success'] == 0): ?>
-                    <p class="mensagem mensagem--sucesso">Vídeo enviado com sucesso!</p>
-                <?php elseif ($_GET['success'] == 1): ?>
-                    <p class="mensagem mensagem--erro">Erro ao enviar o vídeo. Tente novamente.</p>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+
+    <?php if (isset($_GET['message'])): ?>
+        <div id="mensagem" class="mensagem">
+            <p class="mensagem <?= str_contains($_GET['message'], 'error') ? 'mensagem--erro' : 'mensagem--sucesso'; ?>">
+                <?= displayMessage($_GET['message']); ?>
+            </p>
+        </div>
+    <?php endif; ?>
 
     <ul class="videos__container" alt="videos alura">
         <?php foreach ($videoList as $video): ?>
@@ -61,8 +71,8 @@ $videoList= $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                         <img src="./img/logo.png" alt="logo canal alura">
                         <h3><?php echo $video['title']; ?></h3>
                         <div class="acoes-video">
-                            <a href="./pages/enviar-video.html">Editar</a>
-                            <a href="./pages/enviar-video.html">Excluir</a>
+                            <a href="./pages/enviar-video.php">Editar</a>
+                            <a href="/src/remover-video.php?id=<?= $video['id']; ?>">Excluir</a>
                         </div>
                     </div>
                 </li>
@@ -70,17 +80,16 @@ $videoList= $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </ul>
     <script>
-    // Espera 5 segundos e depois remove a mensagem
-    setTimeout(() => {
-        const mensagem = document.getElementById('mensagem');
-        if (mensagem) {
-            mensagem.style.transition = 'opacity 0.5s ease'; // Animação de fade-out
-            mensagem.style.opacity = '0'; // Define a opacidade para 0 (invisível)
-            // Remove o elemento do DOM após a animação
-            setTimeout(() => mensagem.remove(), 400); // 500ms corresponde ao tempo da transição
-        }
-    }, 2000); // 2000ms = 2 segundos
-</script>
+        setTimeout(() => {
+            const mensagem = document.getElementById('mensagem');
+            if (mensagem) {
+                mensagem.style.transition = 'opacity 0.5s ease'; // Animação de fade-out
+                mensagem.style.opacity = '0'; 
+                // Remove o elemento do DOM após a animação
+                setTimeout(() => mensagem.remove(), 400); // 500ms corresponde ao tempo da transição
+            }
+        }, 2000); // 2000ms = 2 segundos
+    </script>
 </body>
 
 </html>
