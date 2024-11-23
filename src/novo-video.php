@@ -4,14 +4,11 @@ require __DIR__ . '/infra/ConnectionDB.php';
 
 $pdo = ConnectionDB::connect($host, $db, $user, $password);
 
-// $url = $_POST['url'];
-// $title = $_POST['title'];
-
 $url = filter_input(INPUT_POST,'url', FILTER_VALIDATE_URL);
 $title = filter_input(INPUT_POST,'title');
 
-if($title === false){
-    header('Location: /index.php?message=invalid_title');
+if(empty($title)){
+    header('Location: /index.php?message=error_invalid_title');
     exit;
 }
 
@@ -22,14 +19,12 @@ if($url && str_starts_with($url, 'http://') || str_starts_with($url, 'https://')
     $stm->bindValue(1, $url);
     $stm->bindValue(2, $title);
 
-    if ($stm->execute()=== false) {
-        header('Location: /index.php?message=sucess_add');
-        exit;
+    if ($stm->execute()) {
+        header('Location: /index.php?message=success_add');
     } else {
         header('Location: /index.php?message=erro_add');
-        exit;
     }
 }else {
-    header('Location: /index.php?message=invalid_url');
+    header('Location: /index.php?message=error_invalid_url');
     exit;
 }

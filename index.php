@@ -6,15 +6,16 @@ $pdo = ConnectionDB::connect($host, $db, $user, $password);
 $sql = "SELECT * FROM videos;";
 $videoList = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-// Função para exibir mensagens
 function displayMessage($key) {
     $messages = [
         'success_add' => 'Vídeo enviado com sucesso!',
         'error_add' => 'Erro ao enviar o vídeo. Tente novamente.',
         'success_delete' => 'Vídeo excluído com sucesso!',
         'error_delete' => 'Erro ao excluir o vídeo.',
-        'invalid_url' => 'URL inválida. Certifique-se de que começa com http:// ou https://.',
-        'invalid_title' => 'Título do video inválido!',
+        'error_invalid_url' => 'URL inválida. Certifique-se de que começa com http:// ou https://.',
+        'error_invalid_title' => 'Título do video inválido!',
+        'error_edit' => 'Erro ao editar video',
+        'success_edit' => 'Video editado com sucesso!',
         ];
 
     return $messages[$key] ?? '';
@@ -32,7 +33,7 @@ function displayMessage($key) {
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="./css/flexbox.css">
-    <title>AluraPlay</title>
+    <title>VideoPlay</title>
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 
@@ -41,7 +42,7 @@ function displayMessage($key) {
     <header>
 
         <nav class="cabecalho">
-            <a class="logo" href="./index.php"></a>
+            <a class="logo" href="/"></a>
 
             <div class="cabecalho__icones">
                 <a href="./pages/enviar-video.php" class="cabecalho__videos"></a>
@@ -71,7 +72,7 @@ function displayMessage($key) {
                         <img src="./img/logo.png" alt="logo canal alura">
                         <h3><?php echo $video['title']; ?></h3>
                         <div class="acoes-video">
-                            <a href="./pages/enviar-video.php">Editar</a>
+                            <a href="/src/formulario.php?id=<?= $video['id']; ?>">Editar</a>
                             <a href="/src/remover-video.php?id=<?= $video['id']; ?>">Excluir</a>
                         </div>
                     </div>
