@@ -10,4 +10,10 @@ $stm = $pdo->prepare($sql);
 $stm->bindValue(1,$_POST['url']);
 $stm->bindValue(2,$_POST['title']);
 
-var_dump($stm->execute());
+if ($stm->execute()) {
+    header('Location: /index.php?success=0');
+    exit;
+} else {
+    header('Location: /index.php?success=1');
+    exit;
+}
