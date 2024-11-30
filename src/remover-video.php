@@ -10,8 +10,8 @@ $stm = $pdo->prepare($sql);
 $stm->bindValue(1, $id);
 
 if ($stm->execute()) {
-    header('Location: /index.php?message=success_delete');
+    header('Location: /?message=success_delete');
 } else {
-    header('Location: /index.php?message=error_delete');
+    header('Location: /?message=error_delete');
 }
 exit;

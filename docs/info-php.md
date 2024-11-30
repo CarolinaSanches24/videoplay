@@ -28,3 +28,8 @@ Redirecionamento com error=invalid_url:
 A função filter_input filtra os dados recebidos da requisição, enquanto filter_var filtra o valor de qualquer variável que tenhamos no código.
 
 Com filter_input podemos filtrar os dados provenientes das requisições HTTP. Podemos filtrar os valores recebidos em $_GET, $_POST, $_COOKIE, $_SERVER ou $_ENV… Já a filter_var serve para filtrarmos variáveis comuns em nosso código.
+
+```php
+declare (strict_types=1);
+´´´
+A declaração declare(strict_types=1); no PHP ativa o modo de tipagem estrita para o arquivo onde ela está presente. Isso significa que o PHP não fará conversões automáticas de tipos em parâmetros e valores de retorno de funções. Em vez disso, ele exigirá que os tipos correspondam exatamente ao que foi definido.

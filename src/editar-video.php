@@ -9,12 +9,12 @@ $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 $title = filter_input(INPUT_POST, 'title');
 
 if ($id === false) {
-    header('Location: /index.php?message=error_edit');
+    header('Location: /?message=error_edit');
     exit();
 }
 
 if (empty($title)) {
-    header('Location: /index.php?message=error_invalid_title');
+    header('Location: /?message=error_invalid_title');
     exit();
 }
 
@@ -27,11 +27,11 @@ if ($url && str_starts_with($url, 'http://') || str_starts_with($url, 'https://'
     $stm->bindValue(':id', $id, PDO::PARAM_INT);
 
     if ($stm->execute()) {
-        header('Location: /index.php?message=success_edit');
+        header('Location: /?message=success_edit');
     } else {
-        header('Location: /index.php?message=error_edit');
+        header('Location: /?message=error_edit');
     }
 }else {
-    header('Location: /index.php?message=error_invalid_url');
+    header('Location: /?message=error_invalid_url');
     exit();
 }
