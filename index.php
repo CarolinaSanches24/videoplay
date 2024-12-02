@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-// Exibe o método HTTP usado (GET, POST, etc.)
-echo 'Método: ' . $_SERVER['REQUEST_METHOD'] . '<br>';
-
-// Exibe o caminho do script sendo acessado
-echo 'Caminho: ' . $_SERVER['REQUEST_URI'] . '<br>';
+$path = explode('?', $_SERVER['REQUEST_URI'])[0] ;
+$path = rtrim($path, '/'); 
+echo $path;
 
 if (array_key_exists('REQUEST_URI', $_SERVER)||$_SERVER['REQUEST_URI'] === '/') {
     require_once 'listagem-videos.php';
@@ -16,7 +14,7 @@ if (array_key_exists('REQUEST_URI', $_SERVER)||$_SERVER['REQUEST_URI'] === '/') 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once 'novo-video.php';
     }
-} elseif (explode('?', $_SERVER['REQUEST_URI'])[0]  === '/editar-video') {
+} elseif ($path === '/editar-video') {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         require_once 'formulario.php';
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
