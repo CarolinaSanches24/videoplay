@@ -37,12 +37,11 @@ if ($id !== false) {
 </head>
 
 <body>
-    <!-- Cabecalho -->
     <header>
         <nav class="cabecalho">
             <a class="logo" href="../index.html"></a>
             <div class="cabecalho__icones">
-                <a href="./enviar-video.php" class="cabecalho__videos"></a>
+                <a href="/src/novo-video.php" class="cabecalho__videos"></a>
                 <a href="../pages/login.html" class="cabecalho__sair">Sair</a>
             </div>
         </nav>
