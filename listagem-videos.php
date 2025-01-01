@@ -48,7 +48,7 @@ function displayMessage($key)
             </a>
 
             <div class="cabecalho__icones">
-                <a href="/src/novo-video.php" class="cabecalho__videos"></a>
+                <a href="/novo-video" class="cabecalho__videos"></a>
                 <a href="./pages/login.html" class="cabecalho__sair"></a>
             </div>
         </nav>

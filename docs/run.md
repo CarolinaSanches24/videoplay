@@ -11,3 +11,6 @@ docker exec -it <nomedocontainer> bash
 ```shell
 docker-compose up -d
 ```
+```shell
+docker-compose down
+```
