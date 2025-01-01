@@ -8,7 +8,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 $title = filter_input(INPUT_POST, 'title');
 
-if ($id === false) {
+if ($id === false || $id == null) {
     header('Location: /?message=error_edit');
     exit();
 }

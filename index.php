@@ -24,4 +24,6 @@ if (!array_key_exists('REQUEST_URI', $_SERVER) || $_SERVER['REQUEST_URI'] === '/
 
         require_once __DIR__ .'/src/editar-video.php';
     }
-};
+} elseif ($_SERVER['REQUEST_URI'] === '/remover-video') {
+    require_once __DIR__.'/src/remover-video.php';
+}
